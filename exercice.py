@@ -188,24 +188,24 @@ def deal_damage(attaquant, defendeur):
         damage, critical = attaquant.compute_damage(defendeur)
         defendeur.hp -= damage
         if critical is False:
-            print(f"{attaquant.__name} used {attaquant.weapon}\n  {defendeur.__name} took {damage} dmg")
+            print(f"{attaquant.name} used {attaquant.weapon.weapon_name}\n  {defendeur.name} took {damage} dmg")
         else:
             print('Critical hit!')
-            print(f"{attaquant.__name} used {attaquant.weapon}\n  {defendeur.__name} took {damage} dmg")
+            print(f"{attaquant.name} used {attaquant.weapon.weapon._name}\n  {defendeur.name} took {damage} dmg")
 
     else:
         damage, critical = attaquant.will_use_spell(defendeur)
         defendeur.hp -= damage
         if critical is False:
-            print(f"{attaquant.__name} used {attaquant.spell}\n  {defendeur.__name} took {damage} dmg")
+            print(f"{attaquant.name} used {attaquant.spell.name}\n  {defendeur.name} took {damage} dmg")
         else:
             print('Critical hit!')
-            print(f"{attaquant.__name} used {attaquant.spell}\n  {defendeur.__name} took {damage} dmg")
+            print(f"{attaquant.name} used {attaquant.spell.name}\n  {defendeur.name} took {damage} dmg")
 
 
 
 def run_battle(attaquant, defendeur):
-    print(f'{attaquant.__name} starts a battle with {defendeur.name}\n')
+    print(f'{attaquant.name} starts a battle with {defendeur.name}\n')
     n_tour = 1
     while attaquant.hp > 0 and defendeur.hp > 0:
         if n_tour % 2 != 0:
@@ -213,12 +213,15 @@ def run_battle(attaquant, defendeur):
         else:
             print(deal_damage(defendeur, attaquant))
 
-    if attaquant.hp <= 0:
-        print(f"{attaquant} is sleeping with the fishes.")
-    else:
-        print(f"{defendeur} is sleeping with the fishes.")
+        n_tour+=1
 
-    print(f"The battle ended in 6 turns.")
+    if attaquant.hp <= 0:
+        print(f"{attaquant.name} is sleeping with the fishes.")
+    else:
+        print(f"{defendeur.name} is sleeping with the fishes.")
+
+
+    print(f"The battle ended in {n_tour} turns.")
 
 
 
